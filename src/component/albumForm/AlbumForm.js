@@ -1,15 +1,26 @@
 import { useState } from 'react';
+import styles from './AlbumForm.module.css';
 
 export default function AlbumForm() {
   const [albumName, setAlbumName] = useState('');
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(albumName);
+  };
+
   return (
-    <div>
-      <h1>Create an album</h1>
-      <form>
-        <input type="text" value={albumName} />
+    <div className={styles.formContainer}>
+      <span>Create an album</span>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={albumName}
+          placeholder="Album Name"
+          onChange={(e) => setAlbumName(e.target.value)}
+        />
         <button>Clear</button>
-        <button>Create</button>
+        <button type="submit">Create</button>
       </form>
     </div>
   );
